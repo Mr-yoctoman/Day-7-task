@@ -1,0 +1,52 @@
+﻿Question : what is filter function used on Array ?
+Answer : The filter function which is used on Array will filter out the required result. Example, In an array, I want all the even numbers I will use the filter function and write the if condition for it and filter the even numbers.
+1 question ( a ): Get all the countries from Asia continent/ region using filter function : 
+Answer : 
+I have stored a request object in a variable,
+var request = new XMLHttpRequest();
+// I have opened a request of the object
+request.open("GET", "https://restcountries.com/v3.1/all");
+request.send();
+request.onload = function () {
+  var data = JSON.parse(request.response);
+//I am using filter function on the array and getting region asia
+  console.log(data.filter((element) => element.region == "Asia"));
+};
+Output will be all the continents which are in the Asia.
+Question (b) : Get all the countries with a population of less than 2 lakhs using filter function ?
+var request = new XMLHttpRequest();
+request.open("GET", "https://restcountries.com/v3.1/all");
+request.send();
+request.onload = function () {
+  var data = JSON.parse(request.response);
+// I am applying filter and if condition to get population below 2lakhs
+  console.log(data.filter((element) => element.population < 200000));
+};
+Output is 62 countries which have population below 2lakhs.
+Question (C) : print the following details name, capital, flag, using forEach function ?
+Answer : 
+var request = new XMLHttpRequest();
+request.open("GET", "https://restcountries.com/v3.1/all");
+request.send();
+request.onload = function () {
+  var data = JSON.parse(request.response);
+  data.forEach(function (obj) {
+    console.log(
+      `name of the country is ${obj.name.official} and it's capital is ${obj.capital} and its flag is ${obj.flag}`
+    );
+  });
+};
+Question (d) : Print the total population of countries using reduce function ?
+var request = new XMLHttpRequest();
+request.open("GET", "https://restcountries.com/v3.1/all");
+request.send();
+request.onload = function () {
+  var data = JSON.parse(request.response);
+// I am using map method to get the array of population of countries and then chain it with reduce to get total population
+  var polutaionObj = data
+    .map((element) => element.population)
+    .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+  console.log(polutaionObj);
+};
+Question (e) :  Print the country that uses US dollars as currency ?
+Unable to do this.
